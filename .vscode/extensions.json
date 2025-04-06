@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ms-vscode.vscode-node-azure-pack",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "msjsdiag.vscode-react-native"
+    ]
+}

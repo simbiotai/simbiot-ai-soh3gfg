@@ -1,0 +1,23 @@
+2025-04-01 01:45:45,877 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://77.91.123.72:80
+2025-04-01 01:45:45,878 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-01 01:45:54,436 - INFO - 77.91.123.72 - - [01/Apr/2025 01:45:54] "[31m[1mGET /api/test HTTP/1.1[0m" 401 -
+2025-04-01 01:45:54,458 - INFO - 77.91.123.72 - - [01/Apr/2025 01:45:54] "[31m[1mGET /api/test HTTP/1.1[0m" 401 -
+2025-04-01 01:45:54,478 - INFO - 77.91.123.72 - - [01/Apr/2025 01:45:54] "[31m[1mGET /api/test HTTP/1.1[0m" 401 -
+2025-04-01 01:45:54,497 - INFO - 77.91.123.72 - - [01/Apr/2025 01:45:54] "[31m[1mGET /api/test HTTP/1.1[0m" 401 -
+2025-04-01 01:45:54,518 - INFO - 77.91.123.72 - - [01/Apr/2025 01:45:54] "[31m[1mGET /api/test HTTP/1.1[0m" 401 -
+2025-04-01 01:46:20,872 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://77.91.123.72:80
+2025-04-01 01:46:20,874 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-01 02:55:12,302 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://77.91.123.72:80
+2025-04-01 02:55:12,303 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-01 02:55:50,350 - INFO - 127.0.0.1 - - [01/Apr/2025 02:55:50] "GET /api/test HTTP/1.1" 200 -
+2025-04-01 02:56:05,601 - INFO - 127.0.0.1 - - [01/Apr/2025 02:56:05] "POST /api/keys HTTP/1.1" 200 -
+2025-04-01 02:56:23,868 - INFO - 127.0.0.1 - - [01/Apr/2025 02:56:23] "POST /api/keys HTTP/1.1" 200 -
