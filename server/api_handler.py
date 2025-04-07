@@ -1,4 +1,23 @@
 from flask import Flask, request, jsonify
+import psycopg2
+
+app = Flask(__name__)
+conn = psycopg2.connect(
+  dbname="your_db", user="your_user", password="your_pass", host="77.91.123.72"
+)
+
+@app.route('/api-keys', methods=['POST'])
+def save_api_key():
+  data = request.json
+  key = data.get('key')
+  with conn.cursor() as cur:
+    cur.execute("INSERT INTO api_keys (key) VALUES (%s)", (key,))
+    conn.commit()
+  return jsonify({'message': 'Key saved'}), 200
+
+# Остальной код
+
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
 from datetime import datetime

@@ -1,8 +1,17 @@
-import i18n from 'i18next';
+import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { getLocales } from 'expo-localization';
-import { en, ru, de } from './translations';
+import en from './translations/en';
+import ru from './translations/ru';
+import de from './translations/de';
 
+i18next.use(initReactI18next).init({
+  resources: { en, ru, de },
+  lng: 'en', // Язык по умолчанию
+  fallbackLng: 'en',
+  interpolation: { escapeValue: false },
+});
+
+export const useTranslation = () => i18next;
 // Initialize i18next
 i18n
   .use(initReactI18next)
