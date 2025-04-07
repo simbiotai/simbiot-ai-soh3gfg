@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  TouchableOpacity, 
-  KeyboardAvoidingView, 
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  KeyboardAvoidingView,
   Platform,
   ScrollView,
   Animated,
@@ -26,18 +26,18 @@ export default function LoginScreen() {
   const { theme } = useThemeStore();
   const colors = Colors[theme];
   const router = useRouter();
-  
+
   const { login, isLoading, error, clearError, isAuthenticated } = useAuthStore();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  
+
   // Animation values
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
   const slideAnim = React.useRef(new Animated.Value(50)).current;
-  
+
   useEffect(() => {
     // Start animations when component mounts
     Animated.parallel([
@@ -54,16 +54,16 @@ export default function LoginScreen() {
         useNativeDriver: true,
       }),
     ]).start();
-    
+
     // If user is already authenticated, redirect to home
     if (isAuthenticated) {
       router.replace('/(tabs)');
     }
   }, [fadeAnim, slideAnim, isAuthenticated, router]);
-  
+
   const validateForm = () => {
     let isValid = true;
-    
+
     // Validate email
     if (!email) {
       setEmailError('Email is required');
@@ -74,7 +74,7 @@ export default function LoginScreen() {
     } else {
       setEmailError('');
     }
-    
+
     // Validate password
     if (!password) {
       setPasswordError('Password is required');
@@ -85,13 +85,13 @@ export default function LoginScreen() {
     } else {
       setPasswordError('');
     }
-    
+
     return isValid;
   };
-  
+
   const handleLogin = async () => {
     clearError();
-    
+
     if (validateForm()) {
       try {
         await login(email, password);
@@ -101,53 +101,53 @@ export default function LoginScreen() {
       }
     }
   };
-  
+
   const navigateToSignup = () => {
     router.push('/auth/signup');
   };
-  
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-      
-      <Stack.Screen 
-        options={{ 
+
+      <Stack.Screen
+        options={{
           headerShown: false,
-        }} 
+        }}
       />
-      
+
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardAvoidingView}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
         >
-          <Animated.View 
+          <Animated.View
             style={[
               styles.content,
-              { 
+              {
                 opacity: fadeAnim,
                 transform: [{ translateY: slideAnim }],
               }
             ]}
           >
             <View style={styles.logoContainer}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2832&auto=format&fit=crop' }}
                 style={styles.logo}
               />
             </View>
-            
+
             <Text style={[styles.title, { color: colors.text }]}>
               Simbiot AI
             </Text>
-            
+
             <Text style={[styles.subtitle, { color: colors.secondaryText }]}>
               Simbiot AI system that trades for you based on artificial intelligence
             </Text>
-            
+
             <View style={styles.form}>
               <Input
                 label="Email"
@@ -163,7 +163,7 @@ export default function LoginScreen() {
                 error={emailError}
                 leftIcon={<Mail size={20} color={colors.secondaryText} />}
               />
-              
+
               <Input
                 label="Password"
                 placeholder="Enter your password"
@@ -177,13 +177,13 @@ export default function LoginScreen() {
                 error={passwordError}
                 leftIcon={<Lock size={20} color={colors.secondaryText} />}
               />
-              
+
               {error && (
                 <Text style={[styles.errorText, { color: colors.error }]}>
                   {error}
                 </Text>
               )}
-              
+
               <Button
                 title="Log In"
                 onPress={handleLogin}
@@ -192,7 +192,7 @@ export default function LoginScreen() {
                 icon={<ArrowRight size={20} color="#FFFFFF" />}
                 iconPosition="right"
               />
-              
+
               <View style={styles.signupContainer}>
                 <Text style={[styles.signupText, { color: colors.secondaryText }]}>
                   Don't have an account?
@@ -270,3 +270,17 @@ const styles = StyleSheet.create({
     marginLeft: SPACING.xs,
   },
 });
+import { Link } from 'expo-router';
+import { Text } from 'react-native';
+import { useTranslation } from '../../i18n';
+
+export default function Login() {
+  const { t } = useTranslation();
+  // ... остальной код логина
+  return (
+    // ... остальной JSX
+    <Link href="/auth/forgot-password">
+      <Text>{t('login.forgotPassword')}</Text>
+    </Link>
+  );
+}

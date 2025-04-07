@@ -177,3 +177,26 @@ if __name__ == '__main__':
     except Exception as e:
         logging.error(f"Ошибка при запуске сервера: {str(e)}")
         sys.exit(1) 
+        from flask import Flask, request, jsonify
+import smtplib
+
+app = Flask(__name__)
+
+@app.route('/reset-password', methods=['POST'])
+def reset_password():
+    data = request.json
+    email = data.get('email')
+    lang = request.headers.get('Accept-Language', 'en')[:2]
+    messages = {
+      'en': 'Password reset link sent',
+      'ru': 'Ссылка для сброса пароля отправлена',
+      'de': 'Link zum Zurücksetzen des Passworts gesendet',
+    }
+    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.starttls()
+        smtp.login('your-email@gmail.com', 'your-password')
+        smtp.sendmail('your-email@gmail.com', email, f'Subject: Reset Password\n\n{messages.get(lang, "en")}')
+    return jsonify({'message': messages.get(lang, 'en')}), 200
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

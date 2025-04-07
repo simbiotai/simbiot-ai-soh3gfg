@@ -19,10 +19,10 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     ...FontAwesome.font,
   });
-  
+
   const colorScheme = useColorScheme();
   const { setTheme } = useThemeStore();
-  
+
   // Set the theme based on the device color scheme
   useEffect(() => {
     if (colorScheme) {
@@ -55,19 +55,31 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const { theme } = useThemeStore();
-  
+
   return (
-    <Stack screenOptions={{ 
+    <Stack screenOptions={{
       headerShown: false,
       animation: Platform.OS === 'web' ? undefined : 'slide_from_right',
-      contentStyle: { 
-        backgroundColor: theme === 'dark' ? '#121212' : '#FFFFFF' 
+      contentStyle: {
+        backgroundColor: theme === 'dark' ? '#121212' : '#FFFFFF'
       }
     }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="auth/login" options={{ headerShown: false }} />
       <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
+  );
+}
+import { Stack } from 'expo-router';
+
+export default function Layout() {
+  return (
+    <Stack>
+      <Stack.Screen name="auth/login" options={{ title: 'Login' }} />
+      <Stack.Screen name="auth/signup" options={{ title: 'Sign Up' }} />
+      <Stack.Screen name="auth/forgot-password" options={{ title: 'Reset Password' }} />
+      {/* Другие экраны */}
     </Stack>
   );
 }
