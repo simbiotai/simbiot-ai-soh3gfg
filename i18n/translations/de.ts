@@ -1,4 +1,36 @@
 export default {
+  resetPassword: {
+    title: 'Passwort-Wiederherstellung',
+    emailPlaceholder: 'Geben Sie Ihre E-Mail ein',
+    submit: 'Senden',
+    success: 'Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet',
+    error: 'Fehler: ',
+  },
+  login: {
+    forgotPassword: 'Passwort vergessen?',
+  },
+  main: {
+    apiKeyPlaceholder: 'API-Schlüssel eingeben',
+    submit: 'Senden',
+    howToFindApiKeys: 'Wie finde ich API-Schlüssel?',
+    error: 'Fehler: ',
+  },
+  instructions: {
+    title: 'API-Schlüssel',
+    content: 'Gehen Sie zu Ihren Kontoeinstellungen, um Ihre API-Schlüssel zu finden.',
+    close: 'Schließen',
+  },
+  admin: {
+    accessDenied: 'Zugang verweigert',
+    users: 'Benutzer',
+    ban: 'Sperren',
+    tickets: 'Tickets',
+    unread: 'Ungelesen',
+    reply: 'Antworten',
+    replyText: 'Admin-Antwort',
+    close: 'Schließen',
+  },
+
   // Common
   appName: 'Simbiot KI',
   cancel: 'Abbrechen',

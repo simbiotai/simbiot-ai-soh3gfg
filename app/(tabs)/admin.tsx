@@ -1,93 +1,37 @@
 import React from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  Alert
-} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useThemeStore } from '@/store/theme-store';
-import { useAuthStore } from '@/store/auth-store';
-import Colors from '@/constants/colors';
-import { SPACING, FONT_SIZE } from '@/constants/theme';
-import { useRouter } from 'expo-router';
-import { useTranslation } from 'react-i18next';
+import { View, Text, Button } from 'react-native';
+import { useAuthStore } from '../../store/auth-store';
+import { useApiKeyStore } from '../../store/api-key-store';
+import { useTicketStore } from '../../store/ticket-store';
+import { useTranslation } from '../../i18n';
 
-export default function AdminScreen() {
-  const { theme } = useThemeStore();
-  const colors = Colors[theme];
+export default function AdminPanel() {
   const { user } = useAuthStore();
-  const router = useRouter();
+  const { apiKeys, banApiKey } = useApiKeyStore();
+  const { tickets, replyToTicket, closeTicket } = useTicketStore();
   const { t } = useTranslation();
-  
-  React.useEffect(() => {
-    // Check if user is admin, if not redirect
-    if (user?.role !== 'admin') {
-      Alert.alert(
-        t('accessDenied'),
-        t('adminAccessDenied'),
-        [
-          {
-            text: 'OK',
-            onPress: () => router.replace('/(tabs)'),
-          },
-        ]
-      );
-    }
-  }, [user, router, t]);
-  
-  // If not admin, don't render anything
-  if (user?.role !== 'admin') {
-    return null;
+
+  if (!user?.isAdmin) {
+    return <Text>{t('admin.accessDenied')}</Text>;
   }
-  
+
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-      
-      <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={[styles.title, { color: colors.text }]}>
-            {t('adminPanel')}
-          </Text>
+    <View style={{ padding: 20 }}>
+      <Text>{t('admin.users')}</Text>
+      {apiKeys.map((key) => (
+        <View key={key.id}>
+          <Text>{key.email} - {key.key}</Text>
+          <Button title={t('admin.ban')} onPress={() => banApiKey(key.id)} />
         </View>
-        
-        <View style={styles.centerContent}>
-          <Text style={[styles.message, { color: colors.text }]}>
-            Admin panel is under construction
-          </Text>
+      ))}
+      <Text>{t('admin.tickets')}</Text>
+      {tickets.map((ticket) => (
+        <View key={ticket.id}>
+          <Text>{ticket.title} {ticket.unread && `(${t('admin.unread')})`}</Text>
+          <Button title={t('admin.reply')} onPress={() => replyToTicket(ticket.id, t('admin.replyText'))} />
+          <Button title={t('admin.close')} onPress={() => closeTicket(ticket.id)} />
         </View>
-      </View>
-    </SafeAreaView>
+      ))}
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    padding: SPACING.md,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: SPACING.md,
-  },
-  title: {
-    fontSize: FONT_SIZE.xl,
-    fontWeight: 'bold',
-  },
-  centerContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  message: {
-    fontSize: FONT_SIZE.lg,
-    textAlign: 'center',
-  }
-});

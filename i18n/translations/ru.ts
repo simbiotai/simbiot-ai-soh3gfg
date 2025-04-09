@@ -1,4 +1,36 @@
 export default {
+  resetPassword: {
+    title: 'Восстановление пароля',
+    emailPlaceholder: 'Введите ваш email',
+    submit: 'Отправить',
+    success: 'Ссылка для сброса пароля отправлена на ваш email',
+    error: 'Ошибка: ',
+  },
+  login: {
+    forgotPassword: 'Забыли пароль?',
+  },
+  main: {
+    apiKeyPlaceholder: 'Введите API-ключ',
+    submit: 'Отправить',
+    howToFindApiKeys: 'Как найти API-ключи?',
+    error: 'Ошибка: ',
+  },
+  instructions: {
+    title: 'API-ключи',
+    content: 'Перейдите в настройки аккаунта, чтобы найти ваши API-ключи.',
+    close: 'Закрыть',
+  },
+  admin: {
+    accessDenied: 'Доступ запрещён',
+    users: 'Пользователи',
+    ban: 'Забанить',
+    tickets: 'Тикеты',
+    unread: 'Непрочитано',
+    reply: 'Ответить',
+    replyText: 'Ответ админа',
+    close: 'Закрыть',
+  },
+
   // Common
   appName: 'Симбиот ИИ',
   cancel: 'Отмена',

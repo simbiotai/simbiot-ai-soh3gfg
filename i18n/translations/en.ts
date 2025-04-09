@@ -1,4 +1,36 @@
 export default {
+  resetPassword: {
+    title: 'Password Recovery',
+    emailPlaceholder: 'Enter your email',
+    submit: 'Send',
+    success: 'A password reset link has been sent to your email',
+    error: 'Error: ',
+  },
+  login: {
+    forgotPassword: 'Forgot Password?',
+  },
+  main: {
+    apiKeyPlaceholder: 'Enter API key',
+    submit: 'Send',
+    howToFindApiKeys: 'How to find API keys?',
+    error: 'Error: ',
+  },
+  instructions: {
+    title: 'API Keys',
+    content: 'Go to your account settings to find your API keys.',
+    close: 'Close',
+  },
+  admin: {
+    accessDenied: 'Access denied',
+    users: 'Users',
+    ban: 'Ban',
+    tickets: 'Tickets',
+    unread: 'Unread',
+    reply: 'Reply',
+    replyText: 'Admin response',
+    close: 'Close',
+  },
+
   // Common
   appName: 'Simbiot AI',
   cancel: 'Cancel',
